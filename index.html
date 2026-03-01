@@ -1,249 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Bakes | Haute Couture Cakes Nepal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #c5a059;
+            --velvet: #630d16;
+            --cream: #fffaf5;
+            --dark: #1a1a1a;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
 
-<title>Sweet Cravings Bakery | Premium Cake Shop Nepal</title>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: var(--cream); 
+            color: var(--dark); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+        /* Luxury Navigation */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 8%; 
+            background: rgba(255, 250, 245, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
 
-<style>
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 28px; font-weight: 700; color: var(--velvet);
+            letter-spacing: 1px;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Poppins;
-}
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 35px; }
+        nav a { 
+            text-decoration: none; color: var(--dark); 
+            font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+            transition: var(--transition);
+        }
+        nav a:hover { color: var(--gold); }
 
-body{
-    background:#fff5f8;
-}
+        /* Hero Section - Parallax Feel */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+            url("https://images.unsplash.com/photo-1535254973040-607b474cb8c2?q=80&w=2070") center/cover no-repeat;
+            background-attachment: fixed;
+        }
 
-/* Navigation */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 10%;
-    background:white;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
+        .hero h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(40px, 8vw, 85px); 
+            font-style: italic; font-weight: 400;
+            margin-bottom: 10px;
+        }
+        
+        .hero p { font-weight: 300; letter-spacing: 5px; text-transform: uppercase; font-size: 14px; }
 
-.logo{
-    font-size:24px;
-    font-weight:700;
-    color:#ff5c8a;
-}
+        /* Elegant Buttons */
+        .btn {
+            display: inline-block; margin-top: 30px; padding: 15px 45px;
+            background: var(--velvet); color: white; text-decoration: none;
+            border: 1px solid var(--velvet); font-size: 12px; letter-spacing: 3px;
+            text-transform: uppercase; transition: var(--transition);
+            cursor: pointer;
+        }
+        .btn:hover { background: transparent; color: var(--velvet); }
 
-nav ul{
-    list-style:none;
-    display:flex;
-}
+        /* Sections */
+        .section { padding: 120px 10%; text-align: center; }
+        .section h2 { 
+            font-family: 'Playfair Display', serif; font-size: 42px; 
+            color: var(--dark); margin-bottom: 40px; 
+        }
+        .section h2::after {
+            content: ''; display: block; width: 50px; height: 1px; 
+            background: var(--gold); margin: 20px auto;
+        }
 
-nav ul li{
-    margin-left:25px;
-}
+        /* Menu Grid */
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; margin-top: 50px;
+        }
 
-nav a{
-    text-decoration:none;
-    color:#333;
-    font-weight:500;
-}
+        .card {
+            background: white; padding: 0; border-radius: 0;
+            transition: var(--transition); position: relative;
+            overflow: hidden; border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
 
-/* Hero */
-.hero{
-    height:90vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
-    url("https://images.unsplash.com/photo-1551024601-bec78aea704b") center/cover;
-    color:white;
-}
+        .card img { width: 100%; height: 400px; object-fit: cover; transition: transform 0.8s ease; }
+        .card:hover img { transform: scale(1.05); }
 
-.hero h1{
-    font-size:55px;
-}
+        .card-info { padding: 30px; }
+        .card-info h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 10px; }
+        .price { color: var(--gold); font-weight: 600; margin-bottom: 20px; letter-spacing: 1px; }
 
-.btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 30px;
-    background:#ff5c8a;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-}
+        /* Discreet Cart UI */
+        .cart-status {
+            position: fixed; bottom: 40px; left: 40px;
+            background: white; padding: 20px 30px;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
 
-/* Products */
-.section{
-    padding:80px 10%;
-    text-align:center;
-}
+        /* WhatsApp Luxury Floating */
+        .whatsapp {
+            position: fixed; bottom: 40px; right: 40px;
+            background: #25D366; color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 1000; transition: var(--transition);
+        }
+        .whatsapp:hover { transform: rotate(15deg) scale(1.1); }
 
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-    margin-top:50px;
-}
+        /* Form Styling */
+        input, textarea, select {
+            width: 100%; max-width: 600px; padding: 18px; margin: 15px auto;
+            display: block; border: none; border-bottom: 1px solid #ddd;
+            background: transparent; font-family: inherit; outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus { border-color: var(--gold); }
 
-.product-card{
-    background:white;
-    padding:20px;
-    border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.08);
-    transition:0.4s;
-}
+        footer {
+            background: var(--dark); color: #888;
+            padding: 80px 10% 40px; text-align: center; font-size: 13px;
+        }
+        .footer-logo { color: white; font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px; }
 
-.product-card:hover{
-    transform:translateY(-12px);
-}
-
-.product-card img{
-    width:100%;
-    border-radius:15px;
-}
-
-/* Gallery */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
-    margin-top:40px;
-}
-
-.gallery img{
-    width:100%;
-    border-radius:15px;
-    transition:0.3s;
-}
-
-.gallery img:hover{
-    transform:scale(1.05);
-}
-
-/* Order Form */
-form{
-    margin-top:40px;
-}
-
-form input, form textarea{
-    width:60%;
-    padding:15px;
-    margin:10px;
-    border-radius:10px;
-    border:1px solid #ddd;
-}
-
-footer{
-    background:#ff5c8a;
-    color:white;
-    text-align:center;
-    padding:30px;
-    margin-top:60px;
-}
-
-/* Floating WhatsApp */
-.whatsapp{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    background:#25D366;
-    padding:18px;
-    border-radius:50%;
-    color:white;
-    text-decoration:none;
-    font-size:22px;
-}
-
-</style>
+        /* Animations */
+        [data-aos="fade-up"] { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        .visible { opacity: 1 !important; transform: translateY(0) !important; }
+    </style>
 </head>
 
 <body>
 
 <nav>
-<div class="logo">🧁 Sweet Cravings</div>
-
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#products">Menu</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#order">Order</a></li>
-</ul>
+    <div class="logo">Velvet Bakes</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">The Collection</a></li>
+        <li><a href="#order">Bespoke Orders</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 </nav>
 
-<section class="hero">
-<div>
-<h1>Fresh Cakes For Every Celebration 🎂</h1>
-<p>Birthday • Wedding • Custom Design Cakes</p>
-<a href="#order" class="btn">Order Now</a>
-</div>
+<section class="hero" id="home">
+    <div>
+        <p>Est. 2026 | Bhairahawa</p>
+        <h1>Artisan Pâtisserie</h1>
+        <a href="#menu" class="btn">View Collection</a>
+    </div>
 </section>
 
-<section class="section" id="products">
-<h2>Our Best Selling Cakes (NPR Price)</h2>
-
-<div class="products">
-
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec">
-<h3>Chocolate Truffle Cake</h3>
-<p>Rs. 2500</p>
-</div>
-
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e">
-<h3>Cupcake Box</h3>
-<p>Rs. 800</p>
-</div>
-
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636">
-<h3>Birthday Custom Cake</h3>
-<p>Rs. 3500+</p>
-</div>
-
-</div>
+<section class="section" id="about">
+    <div data-aos="fade-up">
+        <p style="text-transform: uppercase; letter-spacing: 3px; color: var(--gold); font-size: 12px;">Our Story</p>
+        <h2 style="margin-top:10px;">The Art of Baking</h2>
+        <p style="max-width: 700px; margin: 0 auto; font-weight: 300; color: #666;">
+            At Velvet Bakes, we believe a cake is more than just a dessert—it's a centerpiece of your most cherished celebrations. 
+            Every creation is handcrafted in our Bhairahawa studio using the finest Belgian chocolate, organic vanilla beans, 
+            and a touch of Himalayan soul.
+        </p>
+    </div>
 </section>
 
-<section class="section" id="gallery">
-<h2>Birthday Cake Gallery</h2>
+<section class="section" id="menu" style="background: white;">
+    <h2 data-aos="fade-up">Signature Creations</h2>
+    <div class="grid">
+        <div class="card" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1989">
+            <div class="card-info">
+                <h3>The Midnight Truffle</h3>
+                <p class="price">NPR 2,500</p>
+                <button class="btn" onclick="addToCart(2500, 'Midnight Truffle')">Add to Order</button>
+            </div>
+        </div>
 
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1519869325930-281384150729">
-<img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d">
-<img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35">
-<img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec">
-</div>
+        <div class="card" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=1887">
+            <div class="card-info">
+                <h3>Royal Red Velvet</h3>
+                <p class="price">NPR 2,800</p>
+                <button class="btn" onclick="addToCart(2800, 'Royal Red Velvet')">Add to Order</button>
+            </div>
+        </div>
 
+        <div class="card" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?q=80&w=1888">
+            <div class="card-info">
+                <h3>Gold-Leaf Custom</h3>
+                <p class="price">From NPR 4,500</p>
+                <button class="btn" onclick="addToCart(4500, 'Gold-Leaf Custom')">Add to Order</button>
+            </div>
+        </div>
+    </div>
 </section>
+
+<div class="cart-status" id="cart-status" style="display:none;">
+    <p style="font-size:12px; text-transform:uppercase; letter-spacing:1px; color: var(--gold);">Current Selection</p>
+    <p id="total-price" style="font-family:'Playfair Display'; font-size:20px;"></p>
+</div>
 
 <section class="section" id="order">
-<h2>Place Your Order</h2>
-
-<form>
-<input type="text" placeholder="Your Name">
-<br>
-<input type="text" placeholder="Phone Number">
-<br>
-<input type="text" placeholder="Cake Type">
-<br>
-<textarea placeholder="Custom Design Details"></textarea>
-<br>
-<button class="btn" type="submit">Submit Order</button>
-</form>
-
+    <h2>Bespoke Inquiry</h2>
+    <p style="margin-bottom:40px;">Request a custom design for your special event</p>
+    <form onsubmit="confirmOrder(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <select>
+            <option>Event Type: Wedding</option>
+            <option>Event Type: Birthday</option>
+            <option>Event Type: Corporate</option>
+        </select>
+        <textarea rows="4" placeholder="Describe your vision (Colors, Flavors, Theme)..."></textarea>
+        <button type="submit" class="btn">Submit Inquiry</button>
+    </form>
 </section>
 
 <footer>
-<p>© 2026 Sweet Cravings Bakery | Best Cake Shop Nepal</p>
+    <div class="footer-logo">Velvet Bakes</div>
+    <p>Bhairahawa, Nepal • +977 98XXXXXXXX</p>
+    <p style="margin-top: 20px;">Follow the journey</p>
+    <p style="margin-top: 10px; color: white;">Instagram | Facebook | Pinterest</p>
+    <div style="margin-top: 40px; font-size: 11px; letter-spacing: 1px;">
+        &copy; 2026 VELVET BAKES. ALL RIGHTS RESERVED.
+    </div>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/977000000000">💬</a>
+<a href="https://wa.me/97798XXXXXXXX" class="whatsapp">💬</a>
+
+<script>
+    let total = 0;
+
+    // Simple scroll animation trigger
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+
+    function addToCart(price, name) {
+        total += price;
+        const status = document.getElementById('cart-status');
+        status.style.display = 'block';
+        document.getElementById('total-price').innerText = "NPR " + total.toLocaleString();
+        
+        // Luxury notification
+        console.log(`${name} added to your selection.`);
+    }
+
+    function confirmOrder(e) {
+        e.preventDefault();
+        alert("Your inquiry has been sent to our master baker. We will contact you within 24 hours.");
+    }
+</script>
 
 </body>
 </html>
