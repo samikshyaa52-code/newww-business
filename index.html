@@ -3,254 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreshMart Pro | Your Complete Grocery Solution</title>
+    <title>FreshMart Shankernagar | Best Groceries in Rupandehi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #27ae60;
             --secondary: #2c3e50;
-            --danger: #e74c3c;
-            --warning: #f39c12;
-            --light: #f8f9fa;
-            --white: #ffffff;
+            --whatsapp: #25d366;
+            --light: #f4f7f6;
         }
 
-        * { box-sizing: border-box; transition: all 0.2s ease; }
-        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--light); color: var(--secondary); line-height: 1.6; }
-
-        /* --- Top Bar & Header --- */
-        .top-bar { background: var(--secondary); color: white; padding: 5px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; }
-        .top-bar a { color: white; text-decoration: none; margin-left: 15px; }
-
-        header {
-            background: var(--white);
-            padding: 1rem 5%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--light); color: var(--secondary); }
         
-        .search-container { flex: 1; max-width: 500px; margin: 0 20px; position: relative; }
-        .search-container input { width: 100%; padding: 10px 40px 10px 15px; border: 2px solid #eee; border-radius: 25px; outline: none; }
-        .search-container i { position: absolute; right: 15px; top: 12px; color: #999; }
+        /* --- Header & Contact --- */
+        .top-info { background: var(--primary); color: white; padding: 8px 5%; display: flex; justify-content: space-between; font-size: 0.9rem; }
+        .top-info a { color: white; text-decoration: none; font-weight: bold; }
 
-        .cart-icon { position: relative; cursor: pointer; font-size: 1.4rem; }
-        #cart-count { 
-            position: absolute; top: -10px; right: -10px; 
-            background: var(--danger); color: white; 
-            font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; 
+        header { 
+            background: white; padding: 15px 5%; display: flex; justify-content: space-between; 
+            align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000;
         }
+        .logo-box h1 { margin: 0; color: var(--primary); font-size: 1.5rem; }
+        .logo-box p { margin: 0; font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- Hero & Offer --- */
-        .promo-banner {
-            background: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- Layout Grid --- */
-        .main-content { padding: 2rem 5%; max-width: 1400px; margin: 0 auto; }
-        .category-title { 
-            display: flex; align-items: center; gap: 10px; 
-            margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--primary);
-        }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 25px; }
-
-        /* --- Product Card --- */
-        .card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid #efefef;
-        }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        /* --- Location Section --- */
+        .address-banner { background: white; padding: 20px 5%; border-bottom: 3px solid var(--primary); display: flex; align-items: center; gap: 15px; }
+        .address-icon { font-size: 2rem; color: var(--primary); }
         
-        .badge { 
-            position: absolute; top: 10px; left: 10px; 
-            padding: 4px 10px; border-radius: 4px; 
-            font-size: 0.7rem; font-weight: bold; color: white; z-index: 1;
-        }
-        .bg-new { background: #3498db; }
-        .bg-sale { background: var(--danger); }
-
-        .card-img { width: 100%; height: 180px; object-fit: cover; background: #f9f9f9; }
-        .card-body { padding: 15px; }
-        .weight { color: #888; font-size: 0.85rem; }
-        .price-row { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
-        .curr-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
-        .old-price { text-decoration: line-through; color: #aaa; font-size: 0.9rem; }
-
-        .btn-add {
-            width: 100%; background: var(--primary); color: white; border: none;
-            padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-        .btn-add:hover { background: var(--secondary); }
-
-        /* --- Contact Form --- */
-        .footer-top { background: var(--white); padding: 60px 5%; margin-top: 50px; border-top: 1px solid #eee; }
-        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group input, .form-group textarea { 
-            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; 
+        /* --- Product Grid --- */
+        .main-container { padding: 30px 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 10px; padding: 15px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; }
+        .price { font-size: 1.2rem; font-weight: bold; color: var(--primary); margin: 10px 0; }
+        
+        .add-btn { 
+            background: var(--primary); color: white; border: none; width: 100%; padding: 10px; 
+            border-radius: 5px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
 
-        footer { background: var(--secondary); color: white; padding: 40px 5%; text-align: center; }
-
-        @media (max-width: 768px) {
-            .footer-grid { grid-template-columns: 1fr; }
-            .search-container { order: 3; max-width: 100%; margin: 15px 0 0 0; }
+        /* --- WhatsApp Floating Button --- */
+        .whatsapp-float {
+            position: fixed; bottom: 20px; right: 20px; background: var(--whatsapp); color: white;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 1000;
         }
+
+        /* --- Footer/Map Area --- */
+        .map-section { background: white; padding: 40px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .map-box iframe { width: 100%; height: 250px; border-radius: 10px; border: 0; }
+
+        footer { background: var(--secondary); color: white; text-align: center; padding: 20px; }
+
+        @media (max-width: 768px) { .map-section { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <span><i class="fas fa-truck"></i> Free delivery on orders over $50</span>
-        <div>
-            <a href="tel:+1234567890"><i class="fas fa-phone"></i> +1 234 567 890</a>
-            <a href="mailto:shop@freshmart.com"><i class="fas fa-envelope"></i> shop@freshmart.com</a>
-        </div>
+    <div class="top-info">
+        <span><i class="fas fa-map-marker-alt"></i> Shankernagar, Rupandehi, Nepal</span>
+        <a href="tel:+9779800000000"><i class="fas fa-phone"></i> Call: +977-98XXXXXXXX</a>
     </div>
 
     <header>
-        <a href="#" class="logo">FRESHMART<span style="color:var(--secondary)">.</span></a>
-        
-        <div class="search-container">
-            <input type="text" placeholder="Search for groceries (milk, bread, fruit...)" id="search">
-            <i class="fas fa-search"></i>
+        <div class="logo-box">
+            <h1>FRESHMART GROCERY</h1>
+            <p>Quality You Can Trust</p>
         </div>
-
-        <div class="cart-icon" onclick="alert('Cart functionality coming soon!')">
-            <i class="fas fa-shopping-basket"></i>
-            <span id="cart-count">0</span>
+        <div class="cart-box">
+            <i class="fas fa-shopping-cart"></i> Cart (<span id="count">0</span>)
         </div>
     </header>
 
-    <div class="promo-banner">
-        🔥 Flash Sale: 20% off all Organic Vegetables! Use Code: FRESH20
+    <div class="address-banner">
+        <div class="address-icon"><i class="fas fa-store"></i></div>
+        <div>
+            <strong>Our Location:</strong><br>
+            Shankernagar-02, Near Main Chowk, Rupandehi, Nepal
+        </div>
     </div>
 
-    <main class="main-content">
-        
-        <h2 class="category-title"><i class="fas fa-carrot"></i> Fresh Produce</h2>
+    <main class="main-container">
+        <h2>Popular Essentials</h2>
         <div class="grid">
             <div class="card">
-                <span class="badge bg-new">ORGANIC</span>
-                <img src="https://images.unsplash.com/photo-1518843875459-f738682238a6?w=400" class="card-img" alt="Tomato">
-                <div class="card-body">
-                    <span class="weight">1kg</span>
-                    <h3>Red Tomatoes</h3>
-                    <div class="price-row">
-                        <span class="curr-price">$2.50</span>
-                    </div>
-                    <button class="btn-add" onclick="updateCart()"><i class="fas fa-plus"></i> Add to Cart</button>
-                </div>
+                <img src="https://images.unsplash.com/photo-1523472721958-978152f4d69b?w=400" alt="Rice">
+                <h3>Jeera Masino Rice</h3>
+                <p>25kg Sack</p>
+                <div class="price">Rs. 2,450</div>
+                <button class="add-btn" onclick="add()"><i class="fas fa-cart-plus"></i> Add to Cart</button>
             </div>
-
             <div class="card">
-                <span class="badge bg-sale">-15%</span>
-                <img src="https://images.unsplash.com/photo-1557800636-894a64c1696f?w=400" class="card-img" alt="Orange">
-                <div class="card-body">
-                    <span class="weight">1.5kg (approx 6 pcs)</span>
-                    <h3>Navel Oranges</h3>
-                    <div class="price-row">
-                        <span class="curr-price">$4.20</span>
-                        <span class="old-price">$5.00</span>
-                    </div>
-                    <button class="btn-add" onclick="updateCart()"><i class="fas fa-plus"></i> Add to Cart</button>
-                </div>
+                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400" alt="Pasta">
+                <h3>Local Ghee</h3>
+                <p>500ml Pure</p>
+                <div class="price">Rs. 650</div>
+                <button class="add-btn" onclick="add()"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1627485601819-74c120dd358c?w=400" alt="Oil">
+                <h3>Mustard Oil</h3>
+                <p>1 Liter</p>
+                <div class="price">Rs. 280</div>
+                <button class="add-btn" onclick="add()"><i class="fas fa-cart-plus"></i> Add to Cart</button>
             </div>
         </div>
-
-        <h2 class="category-title"><i class="fas fa-bread-slice"></i> Bakery & Dairy</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=400" class="card-img" alt="Cupcake">
-                <div class="card-body">
-                    <span class="weight">Pack of 4</span>
-                    <h3>Vanilla Cupcakes</h3>
-                    <div class="price-row"><span class="curr-price">$6.00</span></div>
-                    <button class="btn-add" onclick="updateCart()"><i class="fas fa-plus"></i> Add to Cart</button>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1528498033053-35a7130f5d1f?w=400" class="card-img" alt="Cheese">
-                <div class="card-body">
-                    <span class="weight">200g</span>
-                    <h3>Cheddar Cheese</h3>
-                    <div class="price-row"><span class="curr-price">$3.80</span></div>
-                    <button class="btn-add" onclick="updateCart()"><i class="fas fa-plus"></i> Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
     </main>
 
-    <section class="footer-top">
-        <div class="footer-grid">
-            <div>
-                <h2>Visit Our Shop</h2>
-                <p>We provide the freshest groceries in the city with a 100% money-back guarantee on quality.</p>
-                <p><strong>Address:</strong> 456 Market Road, Downtown, NY 10001</p>
-                <p><strong>Hours:</strong> Mon - Sat: 8 AM to 10 PM</p>
-                <div style="margin-top: 20px;">
-                    <img src="https://via.placeholder.com/300x150?text=Map+Location+Placeholder" alt="Map" style="width:100%; border-radius: 10px;">
-                </div>
-            </div>
-            <div>
-                <h2>Contact & Feedback</h2>
-                <form id="contact-form">
-                    <div class="form-group"><input type="text" placeholder="Full Name" required></div>
-                    <div class="form-group"><input type="email" placeholder="Email Address" required></div>
-                    <div class="form-group"><input type="tel" placeholder="Phone Number"></div>
-                    <div class="form-group"><textarea rows="4" placeholder="Your message or order requirements..."></textarea></div>
-                    <button type="submit" class="btn-add" style="background: var(--secondary);">Send Message</button>
-                </form>
-            </div>
+    <section class="map-section">
+        <div>
+            <h2>Contact Us</h2>
+            <p><strong>Shop Name:</strong> FreshMart Grocery Store</p>
+            <p><strong>Address:</strong> Shankernagar, Rupandehi (Tilottama Municipality)</p>
+            <p><strong>Gmail:</strong> contact@freshmart.com</p>
+            <p><strong>Phone:</strong> +977-98XXXXXXXX</p>
+            <p><i class="fas fa-clock"></i> Open: 7:00 AM - 9:00 PM</p>
+        </div>
+        <div class="map-box">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.0123456789!2d83.46!3d27.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3996860000000001%3A0x0!2sShankernagar!5e0!3m2!1sen!2snp!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
+    <a href="https://wa.me/9779800000000" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <footer>
-        <p>&copy; 2026 FreshMart Grocery. Trusted by 10k+ Customers.</p>
-        <div style="margin-top:15px; font-size: 1.2rem;">
-            <i class="fab fa-cc-visa"></i> <i class="fab fa-cc-mastercard"></i> <i class="fab fa-apple-pay"></i> <i class="fab fa-google-pay"></i>
-        </div>
+        <p>&copy; 2026 FreshMart Shankernagar. Serving Rupandehi with Freshness.</p>
     </footer>
 
     <script>
-        // Simple Cart Counter Logic
-        let count = 0;
-        function updateCart() {
-            count++;
-            document.getElementById('cart-count').innerText = count;
-            
-            // Visual feedback
-            const cartIcon = document.querySelector('.cart-icon');
-            cartIcon.style.transform = "scale(1.3)";
-            setTimeout(() => { cartIcon.style.transform = "scale(1)"; }, 200);
+        let c = 0;
+        function add() {
+            c++;
+            document.getElementById('count').innerText = c;
+            alert("Item added to cart!");
         }
-
-        // Contact Form Submission
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you! Your message has been sent to FreshMart support.');
-        });
     </script>
 </body>
 </html>
